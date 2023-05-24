@@ -1,0 +1,12 @@
+services:
+  hookappd-back-api:
+    platform: linux/amd64
+    build:
+      context: src
+      target: builder
+    container_name: hookappd-back-api
+    environment:
+      PORT: 8000
+    ports:
+      - '8000:8000'
+    restart: "no"
