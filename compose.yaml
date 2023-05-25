@@ -10,3 +10,5 @@ services:
     ports:
       - '8000:8000'
     restart: "no"
+    volumes:
+      - ./src/:/hookappd-back-api

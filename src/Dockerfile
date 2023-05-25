@@ -6,8 +6,6 @@ COPY requirements.txt /hookappd-back-api
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install -r requirements.txt
 
-COPY . /hookappd-back-api
-
 FROM builder as dev-envs
 
 RUN <<EOF
