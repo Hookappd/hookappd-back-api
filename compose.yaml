@@ -12,3 +12,39 @@ services:
     restart: "no"
     volumes:
       - ./src/:/hookappd-back-api
+    networks:
+      - hookappd
+  hookappd-db:
+    container_name: hookappd-db
+    image: postgres:15
+    environment:
+      POSTGRES_USER: hookappd
+      POSTGRES_PASSWORD: hookappd
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - hookappd
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: hookappd
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - hookappd
+
+networks:
+  hookappd:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
