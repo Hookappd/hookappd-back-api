@@ -7,6 +7,7 @@ services:
     container_name: hookappd-back-api
     environment:
       PORT: 8000
+      DATABASE_URL: postgresql://hookappd:hookappd@hookappd-db:5432/hookappd
     ports:
       - '8000:8000'
     restart: "no"
@@ -21,6 +22,7 @@ services:
       POSTGRES_USER: hookappd
       POSTGRES_PASSWORD: hookappd
       PGDATA: /data/postgres
+      POSTGRES_DB: hookappd
     volumes:
        - postgres:/data/postgres
     ports:

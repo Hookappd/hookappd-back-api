@@ -24,3 +24,12 @@ Stop and remove the containers
 ```
 $ docker compose down
 ```
+
+---
+Url: http://127.0.0.1:8000/manufactures <br />
+Description: Show available hooka manufactores
+
+How to add new manufacture:
+```
+curl -d '{"name":"Darkside"}' -H "Content-Type: application/json" -X POST http://127.0.0.1:8000/manufactures
+```
