@@ -2,7 +2,7 @@ services:
   hookappd-back-api:
     platform: linux/amd64
     build:
-      context: src
+      context: _docker
       target: builder
     container_name: hookappd-back-api
     environment:

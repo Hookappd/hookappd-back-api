@@ -3,7 +3,7 @@ from sqlalchemy import select
 from sqlmodel import Session
 
 from db import init_db, get_session
-from models import Manufactures, ManufacturesCreate
+from models.manufactures_model import Manufactures, ManufacturesCreate
 
 app = FastAPI()
 
