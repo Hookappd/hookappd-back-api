@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy import select
 from sqlmodel import Session
 
@@ -23,7 +23,10 @@ def get_manufactures(session: Session = Depends(get_session)):
 
 
 @app.post("/manufactures")
-def add_manufacture(manufacture: ManufacturesCreate, session: Session = Depends(get_session)):
+async def add_manufacture(manufacture: ManufacturesCreate, session: Session = Depends(get_session)):
+    check_name = session.execute(select(Manufactures).where(Manufactures.name == manufacture.name)).first()
+    if check_name:
+        raise HTTPException(status_code=400, detail="Name already exists")
     manufacture = Manufactures(name=manufacture.name)
     session.add(manufacture)
     session.commit()
